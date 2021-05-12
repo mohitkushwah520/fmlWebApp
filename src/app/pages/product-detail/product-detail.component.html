@@ -1,0 +1,140 @@
+<div class="page-container product-detail" *ngIf="data">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card product-banner">
+          <div class="card-body">
+            <img src="../../../assets/image/categories/BACARDI GOLD.webp" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row favourite my-4">
+      <div class="col-6">
+        <button class="theme-btn" [class.active]="favourite" (click)="addToFavouriteList(data.itemid)">
+          <!-- <button class="theme-btn" [class.active]="favourite" (click)="addToFavouriteList(data.name)"> -->
+          <i class="far fa-heart" *ngIf="!favourite"></i>
+          <i class="fas fa-heart" *ngIf="favourite"></i>
+        </button>
+      </div>
+      <div class="col-6">
+        <button class="theme-btn"><i class="fas fa-share-alt"></i></button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <!-- {{data | json}} -->
+        <div class="card fml">
+          <div class="card-body">
+            <h3 class="heading2">{{data.itemname}}</h3>
+            <div class="row" *ngIf="data.itemallowvariation === '1'">
+              <div class="col-12">
+                <div class="row my-5" *ngFor="let item of data.variation ; let i = index">
+                  <div class="col-8">
+                    <p class="quantityname m-0">{{item.name}}</p>
+                    <p class="productprice m-0">{{item.price | currency: 'INR'}}</p>
+                  </div>
+
+                  <!-- {{item | json}} -->
+                  <div class="col-4">
+                    <div class="wbr-cmp-stepper input-group" *ngIf="item.quantity >= 1">
+                      <div class="input-group-prepend">
+                          <button class="btn cart-button py-0"  (click)="decreaseQuatity(data,item,i)"><i class="fas fa-minus"></i></button>
+                          <!-- <button class="btn cart-button py-0" (click)="decreaseQuatity(data)"><i class="fas fa-minus"></i></button> -->
+                      </div>
+                      <input type="text" class="form-control bg-white p-0 text-center" [value]="item.quantity" disabled="">
+                      <div class="input-group-append">
+                          <button class="btn cart-button py-0" type="button"  (click)="increaseQuatity(data,item,i)"><i class="fas fa-plus"></i></button>
+                          <!-- <button class="btn cart-button py-0" type="button" (click)="increaseQuatity(data)"><i class="fas fa-plus"></i></button> -->
+                      </div>
+                  </div>
+                    <button class="theme-btn add-to-cart" [disabled]="item.active === '0'" *ngIf="item.quantity === 0" (click)="addTocart(data,item,i)">{{item.active === '1' ? 'add to cart' : 'out of stock'}}</button>
+                    <!-- <button class="theme-btn add-to-cart" *ngIf="data.cartQuantity <= 0" (click)="addTocart(data,item.runningPrice, item.quantityName)" [disabled]="!data.available">{{data.available ? 'add to cart' : 'out of stock'}}</button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="data.itemallowvariation === '0'">
+              <div class="col-12">
+                <div class="row my-5">
+                  <div class="col-8">
+                    <p class="quantityname m-0">{{data.itemname}}</p>
+                    <p class="productprice m-0">{{data.price | currency: 'INR'}}</p>
+                  </div>
+                  <div class="col-4">
+                    <div class="wbr-cmp-stepper input-group" *ngIf="data.item_quantity >= 1">
+                      <div class="input-group-prepend">
+                          <button class="btn cart-button py-0" (click)="decreaseQuatity(data)"><i class="fas fa-minus"></i></button>
+                          <!-- <button class="btn cart-button py-0" (click)="decreaseQuatity(data)"><i class="fas fa-minus"></i></button> -->
+                      </div>
+                      <input type="text" class="form-control bg-white p-0 text-center" [value]="data.item_quantity" disabled="">
+                      <div class="input-group-append">
+                          <button class="btn cart-button py-0" type="button" (click)="increaseQuatity(data)"><i class="fas fa-plus"></i></button>
+                          <!-- <button class="btn cart-button py-0" type="button" (click)="increaseQuatity(data)"><i class="fas fa-plus"></i></button> -->
+                      </div>
+                  </div>
+                    <button class="theme-btn add-to-cart" [disabled]="data.active === '0'" *ngIf="data.item_quantity === 0" (click)="addTocart(data)">{{data.active === '1' ? 'add to cart' : 'out of stock'}}</button>
+                    <!-- <button class="theme-btn add-to-cart" *ngIf="data.cartQuantity <= 0" (click)="addTocart(data,item.runningPrice, item.quantityName)" [disabled]="!data.available">{{data.available ? 'add to cart' : 'out of stock'}}</button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="page-container product-detail" *ngIf="data">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card product-banner">
+          <div class="card-body">
+            <img src="../../../assets/image/categories/BACARDI GOLD.webp" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row favourite my-4">
+      <div class="col-6">
+        <button class="theme-btn" [class.active]="favourite" (click)="addToFavouriteList(data.name)">
+          <i class="far fa-heart" *ngIf="!favourite"></i>
+          <i class="fas fa-heart" *ngIf="favourite"></i>
+        </button>
+      </div>
+      <div class="col-6">
+        <button class="theme-btn"><i class="fas fa-share-alt"></i></button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card fml">
+          <div class="card-body">
+            <h3 class="heading2 mb-5">{{data.name}}</h3>
+            <div class="row my-3" *ngFor="let item of data.quantity">
+              <div class="col-8">
+                <p class="quantityname m-0">{{item.quantityName}}</p>
+                <p class="productprice m-0">{{item.runningPrice | currency: 'INR'}}</p>
+              </div>
+              <div class="col-4">
+                <div class="wbr-cmp-stepper input-group" *ngIf="data.cartQuantity >= 1">
+                  <div class="input-group-prepend">
+                      <button class="btn cart-button py-0" (click)="decreaseQuatity(data)"><i class="fas fa-minus"></i></button>
+                  </div>
+                  <input type="text" class="form-control bg-white p-0 text-center" [value]="data.cartQuantity" disabled="">
+                  <div class="input-group-append">
+                      <button class="btn cart-button py-0" type="button" (click)="increaseQuatity(data)"><i class="fas fa-plus"></i></button>
+                  </div>
+              </div>
+                <button class="theme-btn add-to-cart" *ngIf="data.cartQuantity <= 0" (click)="addTocart(data,item.runningPrice, item.quantityName)" [disabled]="!data.available">{{data.available ? 'add to cart' : 'out of stock'}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

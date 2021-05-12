@@ -1,0 +1,26 @@
+<section class="addressList">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="heading2 my-3">Select Delivery Address</h3>
+        <div class="card my-3" *ngFor="let item of addressList">
+          <div class="card-header bg-transparent">
+            <h3 class="heading2">{{item.firstName}} {{item.lastName}}</h3>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li><small>{{item.flatNo}}</small></li>
+              <li><small>{{item.landmark}}</small></li>
+              <li><small>{{item.locality}}</small></li>
+            </ul>
+            <div class="row">
+              <div class="col-7"><button class="theme-btn" (click)="deliverAddress(item)">Deliver Here</button></div>
+              <div class="col-5"><button class="theme-btn" (click)="editAddress(item)" routerLink="/delivery/address" [queryParams]="{editMode: true, flatNo: item.flatNo}">edit</button></div>
+            </div>
+          </div>
+        </div>
+        <button class="theme-btn addNew" routerLink="/delivery/address" [queryParams]="{addAddress : true}">Add New Address</button>
+      </div>
+    </div>
+  </div>
+</section>

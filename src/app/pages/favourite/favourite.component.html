@@ -1,0 +1,16 @@
+<div class="page-container wish-list" *ngIf="favouriteData">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card my-3">
+          <div class="card-body">
+            <p class="m-0">showing {{favouriteData.length}} product</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 py-3" *ngFor="let item of favouriteData">
+        <app-drink [item]="item"></app-drink>
+      </div>
+    </div>
+  </div>
+</div>

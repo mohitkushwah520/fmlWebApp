@@ -1,0 +1,28 @@
+<div class="page-container profile">
+  <div class="container pt-4">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="heading3">Profile</h3>
+        <div class="card mt-5 overflow-hidden">
+          <div class="card-header bg-white">
+            <h4 class="heading2 text-uppercase py-3">{{previousData ? 'update Profile' : 'create Profile'}}</h4>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="profile" (ngSubmit)="OnSubmit()">
+              <div class="input mb-5">
+                <input type="text" class="control" placeholder="First Name" formControlName="firstName">
+              </div>
+              <div class="input my-5">
+                <input type="text" class="control" placeholder="Last Name" formControlName="lastName">
+              </div>
+              <div class="input my-5">
+                <input type="text" class="control" placeholder="Email" formControlName="email">
+              </div>
+              <button type="submit" class="theme-btn">{{previousData ? 'update' : 'create'}}</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

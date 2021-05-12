@@ -1,0 +1,18 @@
+<div class="page-container sub-categories">
+  <div class="container">
+    <div class="row">
+      <div class="col-10 m-auto">
+        <!-- <h3 class="heading2">{{slug}}</h3> -->
+        <div class="card my-3 py-5 border-none">
+          <div class="card-body my-5">
+            <div class="row my-3" *ngFor="let item of data">
+              <div class="col-6 m-auto">
+                <button class="theme-btn" [routerLink]="'/product-categories/drinks/'+item.categoryid">{{item.categoryname}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

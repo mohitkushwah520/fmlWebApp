@@ -1,0 +1,25 @@
+<div class="page-container search">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <form #search="ngForm">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><i _ngcontent-nag-c49="" class="fas fa-search"></i></span>
+            <input type="text" (input)="change()" class="form-control" ngModel placeholder="search.." required name="searchControl">
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="searchResult">
+          <ul>
+            <li *ngFor="let item of searchData">
+              <a [routerLink]="'/product/'+item.name">{{item.name}}</a><i class="fas fa-angle-right"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

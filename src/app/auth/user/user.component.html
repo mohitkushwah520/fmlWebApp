@@ -1,0 +1,22 @@
+<div class="auth py-5" *ngIf="phone">
+  <div class="auth-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- <h1 class="heading1">Login</h1> -->
+        </div>
+      </div>
+      <div class="row mt-5 pl-5">
+        <div class="col-md-7 mt-5 pt-5 ml-5">
+          <p>welcome!</p>
+          <p class="pera-text">Lets log you in for seamless buying experience</p>
+          <form [formGroup]="phoneNumber" class="text-left" (ngSubmit)="submit()">
+            <input type="text" class="mt-5 fml-input" placeholder="Enter your 10 digit mobile no." formControlName="phoneNumber">
+            <small class="text-danger d-block" *ngIf="phoneNumber.controls['phoneNumber'].invalid && phoneNumber.controls['phoneNumber'].touched">please check the phone number</small>
+            <button type="submit" class="theme-btn">proceed</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

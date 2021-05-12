@@ -1,0 +1,86 @@
+<div class="card drinks-card" *ngIf="item.itemallowvariation === '0'">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-3">
+        <a [routerLink]="'/product/'+item.itemid">
+          <img src="assets/image/img5.jpg" class="w-100" alt="">
+        </a>
+      </div>
+      <div class="col-9">
+        <div class="row">
+          <div class="col-12">
+            <a class="name" [routerLink]="'/product/'+item.itemid">{{item.itemname}}</a>
+            <p class="productprice mt-3">{{item.itemdescription}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <p class="quantityname text-uppercase">{{item.price | currency : 'INR'}}</p>
+          </div>
+          <div class="col-6">
+            <div class="wbr-cmp-stepper input-group" *ngIf="item.item_quantity >= 1">
+              <div class="input-group-prepend">
+                <button class="btn cart-button py-0" (click)="decreaseQuatity(item)"><i
+                    class="fas fa-minus"></i></button>
+              </div>
+              <input type="text" class="form-control bg-white p-0 text-center" [value]="item.item_quantity" disabled="">
+              <div class="input-group-append">
+                <button class="btn cart-button py-0" type="button" (click)="increaseQuatity(item)"><i
+                    class="fas fa-plus"></i></button>
+              </div>
+            </div>
+            <button class="theme-btn" (click)="addTocart(item,false,false)" [disabled]="item.active === '0'" *ngIf="item.item_quantity == 0">{{(item.active === '1') ? 'add to cart' : 'out of stock'}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="card-footer">
+    <button class="theme-btn my-3 mx-2 active">{{item.itemname}}</button>
+  </div> -->
+</div>
+
+
+
+
+<div class="card drinks-card" *ngIf="item.itemallowvariation === '1'">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-3">
+        <a [routerLink]="'/product/'+item.itemid">
+          <img src="assets/image/img5.jpg" class="w-100" alt="">
+        </a>
+      </div>
+      <div class="col-9">
+        <div class="row">
+          <div class="col-12">
+            <a class="name" [routerLink]="'/product/'+item.itemid">{{item.itemname}}</a>
+            <p class="productprice mt-3">{{item.variation[variationNo].name}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <p class="quantityname text-uppercase">{{item.variation[variationNo].price | currency : 'INR'}}</p>
+          </div>
+          <div class="col-6">
+            <div class="wbr-cmp-stepper input-group" *ngIf="item.variation[variationNo].quantity >= 1">
+              <div class="input-group-prepend">
+                <button class="btn cart-button py-0" (click)="decreaseQuatity(item,item.variation[variationNo],variationNo)"><i
+                    class="fas fa-minus"></i></button>
+              </div>
+              <input type="text" class="form-control bg-white p-0 text-center" [value]="item.variation[variationNo].quantity" disabled="">
+              <div class="input-group-append">
+                <button class="btn cart-button py-0" type="button" (click)="increaseQuatity(item,item.variation[variationNo],variationNo)"><i
+                    class="fas fa-plus"></i></button>
+              </div>
+            </div>
+            <button class="theme-btn" (click)="addTocart(item,item.variation[variationNo],variationNo)"  *ngIf="item.variation[variationNo].quantity == 0" [disabled]="item.variation[variationNo].active === '0'">{{(item.variation[variationNo].active === '1') ? 'add to cart' : 'out of stock'}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button class="theme-btn my-3 mx-2" [class.active]="variationNo === i"(click)="variationNo = i" *ngFor="let variation1 of item.variation, let i = index">{{variation1.name}}</button>
+  </div>
+</div>

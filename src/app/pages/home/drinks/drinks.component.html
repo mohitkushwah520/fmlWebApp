@@ -1,0 +1,48 @@
+<div class="drinks">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 py-3" *ngFor="let item of updatedata">
+        <app-drink [item]="item"></app-drink>
+        <!-- <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-3">
+                <a [routerLink]="'/product/'+item.name">
+                  <img src="assets/image/img5.jpg" class="w-100" alt="">
+                </a>
+              </div>
+              <div class="col-9">
+                <div class="row">
+                  <div class="col-12">
+                    <a class="name" [routerLink]="'/product/'+item.name">{{item.name}}</a>
+                    <p class="productprice mt-3">{{item.selectedPrice | currency : 'INR'}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <p class="quantityname text-uppercase">{{item.selectedQunatity}}</p>
+                  </div>
+                  <div class="col-6">
+                    <div class="wbr-cmp-stepper input-group" *ngIf="item.cartQuantity >= 1">
+                      <div class="input-group-prepend">
+                          <button class="btn cart-button py-0" (click)="decreaseQuatity(item)"><i class="fas fa-minus"></i></button>
+                      </div>
+                      <input type="text" class="form-control bg-white p-0 text-center" [value]="item.cartQuantity" disabled="">
+                      <div class="input-group-append">
+                          <button class="btn cart-button py-0" type="button" (click)="increaseQuatity(item)"><i class="fas fa-plus"></i></button>
+                      </div>
+                  </div>
+                    <button class="theme-btn" *ngIf="item.cartQuantity === 0" (click)="addTocart(item)" [disabled]="!item.available">{{item.available ? 'add to cart' : 'out of stock'}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button class="theme-btn my-3 mx-2" (click)="changequantity($event, item, item1)" *ngFor="let item1 of item.quantity" [attr.data-price]="item1.runningPrice" [attr.data-name]="item1.quantityName">{{item1.quantityName}}</button>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

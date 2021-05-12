@@ -1,0 +1,47 @@
+<div class="address-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="heading2" *ngIf="addmode">Add Delivery Address</h3>
+        <div class="card">
+          <div class="card-body">
+            <h1 class="heading2">detail</h1>
+            <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+              <div class="input">
+                <input type="text" class="control" placeholder="First Name" formControlName="firstName">
+              </div>
+              <div class="input">
+                <input type="text" class="control" placeholder="Last Name" formControlName="lastName">
+              </div>
+              <div class="input">
+                <input type="text" class="control" placeholder="Enter 10-digit mobile number" formControlName="phoneNumber">
+              </div>
+              <div class="input">
+                <input type="text" class="control" placeholder="Enter your email address" formControlName="email">
+              </div>
+
+            <h1 class="heading2">address</h1>
+            <div class="address">
+              <div class="input">
+                <select name="locality" id="" class="control" formControlName="locality">
+                  <option value="" selected disabled>Select a area</option>
+                  <option [value]="item" *ngFor="let item of pincode">{{item}}</option>
+                </select>
+              </div>
+              <div class="input">
+                <input type="text" class="control" placeholder="Flat, House no, Building, etc." formControlName="flatNo">
+              </div>
+              <div class="input">
+                <input type="text" class="control" placeholder="Street, Colony, Landmark" formControlName="landmark">
+              </div>
+            </div>
+              <div class="input">
+                <button type="submit" class="theme-btn">Save And Continue</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

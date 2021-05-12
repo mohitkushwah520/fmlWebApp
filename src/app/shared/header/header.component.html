@@ -1,0 +1,60 @@
+<div class="header">
+  <div class="header-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <ul>
+            <li>
+              <a (click)="mainheader()">
+                <i class="fas fa-bars"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://wa.me/917700000770" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+              </a>
+            </li>
+            <li class="logo">
+              <a routerLink="">
+                <img src="assets/image/logo.png" alt="">
+              </a>
+            </li>
+            <li>
+              <a routerLink="search">
+                <i class="fas fa-search"></i>
+              </a>
+            </li>
+            <li class="cart">
+              <a routerLink="/cart">
+                <i class="fas fa-shopping-cart">
+                  <span *ngIf="cartData" class="cart-data">{{cartData}}</span>
+                </i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="main-navbar" [class.active]="header">
+  <div class="bg-shadow" (click)="mainheader()"></div>
+  <div class="navbar-container">
+    <div class="navbar-content">
+      <h3 class="heading2">FML</h3>
+      <ul>
+        <li><a (click)="hideheader()" routerLink="/categories">shop by categories</a></li>
+        <li><a (click)="hideheader()">about us</a></li>
+        <li><a (click)="hideheader()">bulk order</a></li>
+        <li><a (click)="hideheader()">contact us</a></li>
+      </ul>
+      <h3 class="heading2">my profile</h3>
+      <ul>
+        <li><a (click)="hideheader()" routerLink="/profile">my account</a></li>
+        <li><a (click)="hideheader()">my orders</a></li>
+        <li><a (click)="hideheader()" routerLink="wish-list">my favourite</a></li>
+        <li><a (click)="logout()" routerLink="/user">log out</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

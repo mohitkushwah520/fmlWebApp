@@ -1,0 +1,37 @@
+<!-- pin code section start -->
+<div class="pincode">
+  <div class="pincode-container h-100">
+    <div class="container-fluid h-100">
+      <div class="row">
+        <div class="col-md-12 p-0">
+          <div class="logo py-3 mb-4">
+            <img src="assets/image/logo.png" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="row h-100">
+        <div class="col-md-10 m-auto h-100">
+          <div class="card fml">
+            <!-- <h3 class="heading">Check if delivery is available at your pin-code</h3> -->
+            <!-- <form action=""> -->
+            <!-- <input type="number" placeholder="Enter your Pincode"> -->
+            <div class="card-body">
+              <form action="" #loclityData="ngForm"  (ngSubmit)="getLocality(loclityData.value)">
+                <select name="locality" id="" class="input drop-down mb-2" ngModel required>
+                  <option value="" selected disabled>select area</option>
+                  <option [value]="i" *ngFor="let item of locality, let i = index">{{item}}</option>
+                </select>
+                <button class="theme-btn d-block ml-auto mr-auto" type="submit"  [disabled]="loclityData.invalid">Check</button>
+              </form>
+
+              <!-- </form> -->
+              <p class="pera-text">Currently we are delivering in limited areas of Mumbai as per BMC guidelines. Thane, Navi Mumbai, Mira
+                Road, Vasai, Palghar will be started soon.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- pin code section end -->

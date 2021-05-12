@@ -1,0 +1,183 @@
+<div class="cart-container" *ngIf="cartItems.length > 0">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <!-- item section start -->
+        <div class="card card-style rounded-m wbr-cart-items">
+          <h3 class="heading2 border-bottom pb-2 px-3 m-0">Items</h3>
+          <div class="row no-gutters m-0 px-3 align-items-center" *ngFor="let item of cartItems">
+            <div class="w-100" *ngIf="item.itemallowvariation === '0'">
+              <div class="row m-0 py-4 border-top" *ngIf="item.item_quantity >= 1">
+                <div class="col-1">
+                  <img
+                    src="https://admin.livingliquidz.com/Content/wp-content/uploads/2020/09/New-Project-11-13-300x400.jpg"
+                    class="w-100" title="HAKUSHIKA HONJOZO NAMACHOZOSU - 300ML" alt="">
+                </div>
+                <div class="col-5 pl-2 pr-2">
+                  <p class="m-0">{{item.itemname}}</p>
+                </div>
+                <div class="col-3">
+                  <div class="cart-control d-flex">
+                    <button (click)="decreaseQuatity(item)"><i class="fas fa-minus"></i></button>
+                    <input type="text" class="form-control bg-white p-0 text-center" [value]="item.item_quantity" disabled="">
+                    <button (click)="increaseQuatity(item)"><i class="fas fa-plus"></i></button>
+                  </div>
+                </div>
+                <div class="col-3 text-right">
+                  <p class="m-0">{{item.price | currency : 'INR'}}</p>
+                </div>
+                </div>
+            </div>
+            <div class="w-100" *ngIf="item.itemallowvariation === '1'">
+              <div *ngFor="let item1 of item.variation, let i = index">
+                <div class="row px-3 py-4 border-top" *ngIf="item1.quantity >= 1">
+                  <div class="col-1">
+                    <img
+                      src="https://admin.livingliquidz.com/Content/wp-content/uploads/2020/09/New-Project-11-13-300x400.jpg"
+                      class="w-100" title="HAKUSHIKA HONJOZO NAMACHOZOSU - 300ML" alt="">
+                  </div>
+                  <div class="col-5 pl-2 pr-2">
+                    <p class="m-0">{{item.itemname}}</p>
+                    <p class="m-0">{{item1.name}}</p>
+                  </div>
+                  <div class="col-3">
+                    <div class="cart-control d-flex">
+                      <button (click)="decreaseQuatity(item,i)"><i class="fas fa-minus"></i></button>
+                      <input type="text" class="form-control bg-white p-0 text-center" [value]="item1.quantity" disabled="">
+                      <button (click)="increaseQuatity(item,i)"><i class="fas fa-plus"></i></button>
+                    </div>
+                  </div>
+                  <div class="col-3 text-right">
+                    <p class="m-0">{{item1.price | currency : 'INR'}}</p>
+                  </div>
+                </div>
+              </div>
+              </div>
+          </div>
+        </div>
+        <!-- item section end -->
+
+        <!-- permit section start -->
+        <div class="card permit card-style rounded-m my-5">
+          <h3 class="border-bottom px-3 pb-2 heading2">Permit Number</h3>
+          <div class="color-wine px-3"><p class="mb-0 py-3">Do you have a Permit Number?</p></div>
+          <div class="input-style input-style-1 input-required mx-3">
+            <select autocomplete="off" class="wbr-input-have_permit m-0 rounded-0 font-18" id="HavePermitNumberDisplay" name="HavePermitNumberDisplay" (change)="permitData()">
+              <option disabled>Select option</option>
+              <option value="true">Yes</option>
+              <option value="false" selected="selected">No</option>
+            </select>
+            <!-- <span class="field-validation-valid text-danger" data-valmsg-for="HavePermitNumberDisplay"
+              data-valmsg-replace="true"></span> -->
+          </div>
+          <div class="wbr-inp-permit-container pt-3" *ngIf="!permit">
+            <div class="color-wine font-14 font-600 px-3"><p class="m-0 pt-3 pb-2">Your Alcohol Permit Number</p></div>
+            <div class="input-style input-style-1 input-required mx-3">
+              <input class="wbr-input-permit m-0 rounded-0 font-18 text-box single-line" id="PermitNumber" [(ngModel)]="permitvalue" name="PermitNumber"
+                placeholder="Type your permit number here" type="text">
+            </div>
+          </div>
+        </div>
+        <!-- permit section end -->
+
+        <!-- bill detail start -->
+        <div class="card card-style cart-total rounded-m my-5">
+          <h3 class="border-bottom pb-2 px-3 heading2">Bill Details</h3>
+          <div class="row my-1 mx-0">
+            <div class="col-6 pr-0 font-16">
+              <p class="text">Item Total</p>
+            </div>
+            <div class="col-6 text-right">
+              <p class="number-content">{{cartPrice | currency : 'INR'}}</p>
+            </div>
+          </div>
+          <div class="row my-1 mx-0 border-top pt-2 wbr-permit-amount" *ngIf="permit">
+            <div class="col-6 pr-0 font-16">
+              <p class="text">One-day Permit Cost</p>
+            </div>
+            <div class="col-6 text-right font-00 font-16">
+              <p class="number-content">{{'5' | currency : 'INR'}}</p>
+            </div>
+          </div>
+          <div class="row my-1 mx-0 border-top pt-2">
+            <div class="col-6 pr-0 font-16">
+             <p class="text">Delivery fee</p>
+            </div>
+            <div class="col-6 text-right font-00 font-16 text-success">
+              Free!
+            </div>
+          </div>
+          <div class="row my-1 mx-0 border-top pt-2">
+            <div class="col-6 pr-0 font-16 font-600 color-black">
+              <p class="text cart-total-price">You Pay</p>
+            </div>
+            <div class="col-6 text-right wbr-without-permit-amount-total">
+              <p class="number-content cart-total-price">{{ (permit ? (cartPrice + 5) : cartPrice) | currency : 'INR'}}</p>
+            </div>
+          </div>
+        </div>
+        <!-- bill detail end -->
+
+        <!-- address section start -->
+        <div class="card address my-5" *ngIf="deliveryAddress">
+          <div class="card-header bg-transparent pt-0">
+            <h3 class="heading2">Delivery To</h3>
+            <p class="text m-0">{{deliveryAddress.firstName}} {{deliveryAddress.lastName}}</p>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li><small>{{deliveryAddress.flatNo}}</small></li>
+              <li><small>{{deliveryAddress.landmark}}</small></li>
+              <li><small>{{deliveryAddress.locality}}</small></li>
+            </ul>
+            <div class="row">
+              <div class="col-7"><button class="theme-btn" routerLink="/delivery/SelectDeliveryAddress">change Address</button></div>
+              <div class="col-5"><button class="theme-btn" routerLink="/delivery/address" [queryParams]="{editMode: true, flatNo: deliveryAddress.flatNo}">edit</button></div>
+            </div>
+          </div>
+        </div>
+        <!-- address section end -->
+
+        <!-- payment section start -->
+        <div class="card my-5">
+          <div class="card-header pt-0 bg-transparent">
+            <h1 class="heading2">payment method</h1>
+          </div>
+          <div class="card-body">
+            <div class="paymentType">
+              <ul>
+                <li>
+                  <div class="payment-content">
+                    <p class="p-type"><i class="far fa-check-circle"></i>cash on delivery</p>
+                    <p>pay with Cash/G-Pay/UPI on delivery.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- payment section end -->
+
+        <!-- confirm section start -->
+        <form action="" #restrictionForm="ngForm" (ngSubmit)="onSubmit(restrictionForm,permitvalue)">
+          <div class="card my-5">
+            <div class="card-body">
+              <div class="confirm-section">
+                <input type="checkbox" name="age" ngModel required>
+                <label for="">I confirm I am above 25 years of age.</label>
+              </div>
+            </div>
+          </div>
+          <button *ngIf="deliveryAddress" class="theme-btn" [disabled]="restrictionForm.invalid">continue</button>
+        </form>
+        <!-- confirm section end -->
+
+        <div class="row">
+          <div class="col-12">
+            <button *ngIf="!deliveryAddress" class="theme-btn" routerLink="/delivery/address">Add Address</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

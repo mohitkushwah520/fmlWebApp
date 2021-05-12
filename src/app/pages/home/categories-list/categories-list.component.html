@@ -1,0 +1,9 @@
+<div class="page-container categoriesList">
+  <div class="container">
+    <div class="row">
+      <div class="col-4 my-3" *ngFor="let item of categorieslist">
+        <app-category [name]="(item.name)? item.name: item.categoryname" [link]="item.name ? ('/product-categories/'+item.id) : ('/product-categories/drinks/'+item.categoryid)"></app-category>
+      </div>
+    </div>
+  </div>
+</div>
